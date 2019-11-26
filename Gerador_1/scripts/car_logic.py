@@ -35,10 +35,6 @@ TURN_SPEED = 0.0005
 MAX_VEL_RE = -0.15
 
 #sensors
-#w = cont.sensors['w']
-#s = cont.sensors['s']
-#a = cont.sensors['a']
-#d = cont.sensors['d']
 w = own['w']
 a = own['a']
 d = own['d']
@@ -111,29 +107,6 @@ elif a == False and turn > 0:
     motion.dRot = ([0.0, 0.0, (own['turn'])])
     cont.activate(motion)        
     
-#if (velocity < -0.03 and a.positive and turn > -MAX_TURN):
-#    own['turn'] -= TURN_INC
-#    own['velocity'] -= TURN_SPEED
-#    motion.dRot = ([0.0, 0.0, (own['turn'])])
-#    motion.dLoc = ([0.0, -(own['velocity']), 0.0])
-#    cont.activate(motion)
-        
-#elif a.positive == False and turn < 0:
-#    own['turn'] += TURN_INC
-#    motion.dRot = ([0.0, 0.0, (own['turn'])])
-#    cont.activate(motion)
-        
-#no turning
-#if a.positive == False and d.positive == False:
-#    if turn > 0:
-#        own['turn'] -= TURN_INC
-#        motion.dRot = ([0.0, 0.0, (own['turn'])])
-#        cont.activate(motion)
-#    elif turn < 0:
-#       own['turn'] += TURN_INC
-#        motion.dRot = ([0.0, 0.0, (own['turn'])])
-#        cont.activate(motion)
-
 #stop any rotation
 if turn < 0.001 and d == False:
     motion.dRot = ([0.0, 0.0, 0.0])
@@ -152,29 +125,4 @@ elif d == False and turn < 0:
     motion.dRot = ([0.0, 0.0, (own['turn'])])
     cont.activate(motion)    
 
-#own.applyForce((own['force']*1000,0,0),True)
-
-
-#if velocity < -0.03 and d.positive and turn < MAX_TURN:
-#    own['turn'] += TURN_INC
-#    own['velocity'] -= TURN_SPEED
-#    motion.dRot = ([0.0, 0.0, (own['turn'])])
-#    motion.dLoc = ([0.0, -(own['velocity']), 0.0])
-#    cont.activate(motion)
-        
-#elif d.positive == False and turn > 0:
-#    own['turn'] -= TURN_INC
-#    motion.dRot = ([0.0, 0.0, (own['turn'])])
-#    cont.activate(motion)
-
-#no turning
-#elif d.positive == False:
-#    if turn < 0:
-#        own['turn'] += TURN_INC
-#       motion.dRot = ([0.0, 0.0, (own['turn'])])
-#        cont.activate(motion)
-#    elif turn < 0:
-#        own['turn'] -= TURN_INC
-#        motion.dRot = ([0.0, 0.0, (own['turn'])])
-#        cont.activate(motion)    
 

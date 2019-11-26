@@ -4,8 +4,6 @@ import mathutils;
 import math
 import shapely.geometry as geom
 
-#print("Hello Blender")
-
 class NeuralNetwork:
     def __init__(self, x, y, gene):
         self.input      = x
@@ -38,28 +36,22 @@ carro  = cont.owner
 own = carro
 
 if not carro['init']:
-    #print('Iniciando Carro')
     carro['init']=True;
     #carro['rede'] = 8;
     x = numpy.zeros((1,4))
     y = numpy.zeros((1,4))
     carro['rede'] = NeuralNetwork(x,y,carro['gene']);
     own['distancia_anterior'] = 0;
-    #carro['rede']=7;
-    #print(dir(carro))
     
 if carro['init']:
     ray1 = cont.sensors['Ray1']
-    ray2 = carro['sensor1'] #cont.sensors['Ray2']
-    ray3 = carro['sensor2'] #cont.sensors['Ray3']
-    #print(dir(ray))
+    ray2 = carro['sensor1']
+    ray3 = carro['sensor2'] 
     if ray1.positive:
         hitPosition = ray1.hitPosition
         distance1 = own.getDistanceTo(hitPosition)
         color = [1, 0, 0]
         bge.render.drawLine(own.worldPosition,ray1.hitPosition,color)
-        #print(distance)
-        #print('acertou')
     else:
         distance1 = 100;
         xyz = own.localOrientation.to_euler()
@@ -74,8 +66,6 @@ if carro['init']:
         distance2 = own.getDistanceTo(hitPosition)
         color = [0, 1, 0]
         bge.render.drawLine(own.worldPosition,ray2.hitPosition,color)
-        #print(distance)
-        #print('acertou')
     else:
         distance2 = 100;
         xyz = own.localOrientation.to_euler()
@@ -90,8 +80,6 @@ if carro['init']:
         distance3 = own.getDistanceTo(hitPosition)
         color = [1, 1, 0]
         bge.render.drawLine(own.worldPosition,ray3.hitPosition,color)
-        #print(distance)
-        #print('acertou')
     else:
         distance3 = 100;
         xyz = own.localOrientation.to_euler()
@@ -102,7 +90,6 @@ if carro['init']:
         bge.render.drawLine(from_pos, to_pos, color)
 
     
-    #coords = [(0,32),(110,32),(130,25),(140,12),(145,-10),(138,-33),(125,-42),(115,-50),(-55,-50),(-85,-32),(-118,-22),(-138,-3),(-141,29),(-124,50),(-98,56),(-69,42),(-39,32),(-1,32)]
     coords = [(-128,297),(-420,294),(-442,289),(-469,277),(-481,257),(-482,238),(-469,217),(-448,184),(-455,157),(-475,134),(-499,102),(-514,40),(-499,-31),(-443,-91),(98,-380),(119,-383),(144,-376),(162,-357),
     (204,-260),(202,-210),(182,-166),
     (-41,99),
@@ -117,23 +104,9 @@ if carro['init']:
     ]
     line = geom.LineString(coords)
     point = geom.Point(own.worldPosition[0],own.worldPosition[1])
-    #point_on_line = line.interpolate(line.project(point))
-    #from_pos  = own.worldPosition
-    #to_pos = mathutils.Vector([point_on_line.x,point_on_line.y,own.worldPosition[2]])
-    #color = [0,0,1]
-    #bge.render.drawLine(from_pos,to_pos,color)
     
     own['angulo_pista']  = line.project(point)
     
-    diferenca = own['angulo_pista'] - own['distancia_anterior'];
-    
-    #if diferenca < -50 or diferenca > 300 :
-    #    own['sentido_errado'] = True;
-    #    if not own['roubou']:
-    #        own['roubou'] = True;
-    #        own['pontuacao'] = own['angulo_pista']
-    #else:
-    #    own['sentido_errado'] = False;
     
     if own['angulo_pista'] < 50:
         own['roubou'] = True;
@@ -148,13 +121,12 @@ if carro['init']:
         if not own['roubou']: 
             own['roubou'] = True;
             own['pontuacao'] = own['angulo_pista']
-        #print('bateu')
+        
         
     #calcula pontuacao
     if not own['roubou']:
         own['pontuacao'] = own['angulo_pista']; 
         
-    #own['pontuacao'] = own['angulo_pista']
     inputs = [ 
         distance1,
         distance2,

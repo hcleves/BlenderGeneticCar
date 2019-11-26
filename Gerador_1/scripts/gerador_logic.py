@@ -13,7 +13,6 @@ posicao_inicial = (-200,297,2.5);
 scene = bge.logic.getCurrentScene()
 obj = bge.logic.getCurrentController().owner
 
-#coords = [(0,32),(110,32),(130,25),(140,12),(145,-10),(138,-33),(125,-42),(115,-50),(-55,-50),(-85,-32),(-118,-22),(-138,-3),(-141,29),(-124,50),(-98,56),(-69,42),(-39,32),(-1,32)]
 coords = [(-128,297),(-420,294),(-442,289),(-469,277),(-481,257),(-482,238),(-469,217),(-448,184),(-455,157),(-475,134),(-499,102),(-514,40),(-499,-31),(-443,-91),(98,-380),(119,-383),(144,-376),(162,-357),
 
 (204,-260),(202,-210),(182,-166),
@@ -54,8 +53,6 @@ def cria_novos_carros(populacao):
         carro['sensor2'] = cubo.sensors['Ray2']
         cubo['carro'] = carro;
         cubo.applyRotation((0,0,1.5*1.5708),True)
-        #print(carro)
-        #luz = sce.addObject('lumus',obj,0)
         carro['force'] = a*5;
         carro.applyRotation((0,0,3*1.5708),True)
         carros.append(carro)
@@ -92,12 +89,7 @@ def cria_10_carros():
         carro['sensor2'] = cubo.sensors['Ray2']
         cubo['carro'] = carro;
         cubo.applyRotation((0,0,1.5*1.5708),True)
-        #bge.logic.getCurrentController().owner.worldPosition = (2*a,30,0.5)
-        #carro.applyRotation((0,0,1.5708*0.5*a),True)
         carro.applyRotation((0,0,3*1.5708),True)
-        #print(carro)
-        #[carro,lumus,plane,muro,muro_2] = cria_cenario([0,a,0],a)
-        #luz = sce.addObject('lumus',obj,0)
         carro['force'] = a*5;
         carros.append(carro)
         cenario.append(cubo)
@@ -171,15 +163,10 @@ if 'lista_carros' not in obj:
     obj['lista_cenarios'] = []
 
 if  not obj['init']:
-    #print("Iniciando");
     obj['init']= True;
     obj['geracao'] = 1;
-    #print(dir(cont.sensors['Init']));
-    #print(cont.sensors['Init'].positive) 
     [carros,obj['lista_cenarios']] = cria_10_carros();
     obj['lista_carros']=carros;
-    #print(dir(obj));
-    #print(dir(scene.objects['Camera'].actuators[0]));
     scene.objects['Camera'].actuators[0].object = carros[0];
     print(scene.objects['Camera'].actuators)
     data = datetime.datetime.now()
@@ -235,19 +222,5 @@ if obj['tempo'] > tempo_limite:
     
     [obj['lista_carros'],obj['lista_cenarios']]=cria_novos_carros(populacao)    
     scene.objects['Camera'].actuators[0].object = obj['lista_carros'][0];
-
-    #for b in range(0,altura,10):
-#    obj.worldPosition=(b,a,0)
-#    t=sce.addObject("Carro", obj,0)
-#    objetos_criados.append(t)
-#    for a in range(0,largura,10):
-#        obj.worldPosition = (b,a,0)
-#        sce.addObject("Carro", obj,0)
-#        objetos_criados.append(t)
-
-#print(carros_criados[0]['force'])
-#print(dir(luz))
-
-#sce.addObject('Carro', obj)
 
 
