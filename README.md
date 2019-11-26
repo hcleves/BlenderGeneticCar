@@ -24,3 +24,5 @@ importlib.reload(numpy)
 ```
 
 Para lançar a simulação, basta abrir uma janela do 3dView, colocar o mouse sobre ela e teclar "p". Certifique-se que o Blender está no modo Blender Game. Para sair da simulação, basta colocar o mouse sobre ela novamente e apertar ESC.
+
+Para utilizar a camera do jogo no 3dView, pode-se utilzar a hotkey Numpad 0
