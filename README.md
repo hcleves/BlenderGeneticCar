@@ -4,6 +4,19 @@
 
 Adiconar depois utilizando o [site](https://ecotrust-canada.github.io/markdown-toc/)
 
+## Requisitos
+
+* Blender versão 2.79 (A partir da versão 2.8, foi descontinuado o Blender Game Engine e portanto, não irá funcionar)
+* Bibliotecas 
+  * numpy
+  * shapely
+  * mathutils
+  * math
+  * os
+  * datetime
+
+* É recomendado o uso do mesmo sistema operacional utilizado para o desenvolvimento do programa(Ubuntu 18.04). Apesar do Blender ser multi-plataforma, tive problemas para fazer funcionar em um Windows 10 e não tive a oportunidade de testar em um MacOs.
+
 ## Uso
 
 Para utilizar o programa, basta acessar o arquivo .blend dentro da pasta Blenders.
