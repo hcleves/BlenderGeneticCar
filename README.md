@@ -8,6 +8,8 @@ Adiconar depois utilizando o [site](https://ecotrust-canada.github.io/markdown-t
 
 Para utilizar o programa, basta acessar o arquivo .blend dentro da pasta Blenders.
 
+##### Importante: Para lançar o arquivo .blend utilize a linha de comando "blender <nome_do_arquivo>". Tentar abrir o arquivo com dois cliques ou outra maneira, irá resultar em uma simulação com defeitos, por motivos que não compreendo.
+
 Nota-se que também é fácil criar um arquivo novo, basta colocá-lo dentro da pasta Blenders e copiar e colar o arquivo main.py na pasta scripts para o editor de texto do blender e executar o script. Caso seja um novo arquivo, é recomendado fazer os seguintes passos para melhorar a performance:
 
 1. Vá na view de Properties, na Aba Render, procure por System
@@ -27,4 +29,4 @@ Para lançar a simulação, basta abrir uma janela do 3dView, colocar o mouse so
 
 Para utilizar a camera do jogo no 3dView, pode-se utilzar a hotkey Numpad 0
 
-##### Importante: Para lançar o arquivo .blend utilize a linha de comando "blender <nome_do_arquivo>". Tentar abrir o arquivo com dois cliques ou outra maneira, irá resultar em uma simulação com defeitos, por motivos que não compreendo.
+
