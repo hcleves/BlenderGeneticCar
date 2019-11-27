@@ -4,6 +4,28 @@
 
 Adiconar depois utilizando o [site](https://ecotrust-canada.github.io/markdown-toc/)
 
+## Introducao
+
+Esse é um projeto desenvolvido para a disciplina PSI3572- Computacao Visual, dada pela Escola Politecnica da USP no segundo semestre de 2019. O projeto consiste em desenvolver uma aplicacao que utilize computacao. Nós escolhemos utilizar um algoritmo genetico para ensinar um carro virtual a dirigir.
+
+Aplicacoes semelhantes podem ser encontradas na Internet, como nesse [link](https://ashwinvaidya.com/blog/self-driving-car-using-genetic-algorithm-in-unity/) ou [aqui](https://www.youtube.com/watch?v=8V2sX9BhAW8&feature=emb_title). Porem, nao conseguimos achar nenhum programa desse tipo que rode utilizando a Blender Game Engine. Logo, resolvemos fazer um. Outro motivo para utilizarmos o Blender, é por ser mais leve para rodar do que o Unity e tambem por ser um programa Open Source.
+
+## Como funciona
+Para aplicarmos um algoritmo genetico, pensamos em utilizar um controlador generico no carro e então o algoritmo genetico altera os parametros desse controlador, dando assim caracteristicas diferentes aos carros para serem selecionados. O controlador do algoritmo genetico pode ser encontrados nos scripts "gerador_logic.py".
+
+Como controlador, resolvemos utilizar uma rede neural, e assim, os parametros que constituem o codigo genetico dos carros são os pesos e vieses da rede. A estrutura interna da rede é diferente no gerador_1 e no gerador_2, mais detalhes podem ser encontrados dentro dos readme dessas pastas. Apesar disso, as entradas e saidas da rede são iguais para ambos. As entradas são o modulo da velocidade linear do carro e o valor de 3 sensores do tipo Ray(Exemplificados por "lasers" na visualizacao). A saida é o equivalente as teclas WASD do teclado, para controlar o carrinho. O codigo relacionado ao controlador do carrinho pode ser encontrado nos scripts "network_logic.py".
+
+Para animar o carrinho, primeiramente fizemos um script "car_logic.py", que permitia ao usuario controlar o carrinho de forma mais natural utilizando as teclas WASD do teclado. Apos isso, bastou trocar essa entrada do teclado pela saida da rede_neural.
+
+Há ainda mais um arquivo não explicado, o 'cube_logic.py'. Esse arquivo apenas move um cubo responsavel pelo posicionamento correto dos sensores tipo Ray.
+
+## Pistas
+Para treinarmos o carrinho, precisavamos de uma pista de teste, para isso, utilizamos como inspiracao autodromos de Formula 1. Primeiramente criamos uma secao lateral da pista com muros dos lados, como no arquivo "pista_pedaco.blend". Depois, é possivel fazer a pista seguir uma curva determinada como nesse [video](https://www.youtube.com/watch?v=SDLLbKvEeBY). Para criar a curva utilizamos a biblioteca Shapely do python, que permite criar uma curva a partir de uma serie de pontos. Essa biblioteca tambem foi util para calcularmos a distancia percorrida sobre essa curva. Como no video, projetamos um desenho esquematico da pista de Interlagos, que serviu como treinamento, e fomos manualmente achando as coordenadas corretas para aproximar essa pista. Esse processo está no arquivo "pistaInterlagos.blend".
+
+Apos treinado o carrinho , fizemos uma pista com o desenho da pista de monaco da Formula 1, para testa-los em uma pista diferente e ver como eles funcionavam.
+
+Importante notar, que devido a forma que construimos a pista, desconsideramos as diferencas de altitude entre os setores da pista. Logo uma pista com ladeiras passa a ser uma pista plana.
+
 ## Requisitos
 
 * Blender versão 2.79 (A partir da versão 2.8, foi descontinuado o Blender Game Engine e portanto, não irá funcionar)
