@@ -27,6 +27,20 @@ Após treinado o carrinho , fizemos uma pista com o desenho da pista de mônaco 
 Importante notar, que devido a forma que construímos a pista, desconsideramos as diferenças de altitude entre os setores da pista. Logo uma pista com ladeiras passa a ser uma pista plana.
 
 
+## Algotitmo genetico
+O Algoritmo genetico, que está descrito em "gerador_logic.py" funciona da seguinte maneira. O código genético é um array que possui os pesos e vieses da rede neural que constitue o carro. Na primeira geração, são criados carros com os genes iniciados aleatoriamente. 
+
+No gerador 2, durante o teste de uma geração, conforme os carros vão falhando, seus códigos genéticos são incluídos em uma lista, assim como as suas pontuações são incluídas em outra lista. Após todos os carros falharem, ou conseguirem chegar ao final da pista(e consequentemente falhar, pois irão ficar parados por muito tempo), são unidos a lista de genes e a lista de pontuações de forma a criar uma tabela(ou matriz) que contém em cada linha o código genético do carro e a sua pontuação. Essa matriz é então ordenada de acordo com a pontuação de forma que a pontuação mais alta fique no topo da matriz. Assim, passa-se essa matriz para uma função de reprodução
+
+No gerador 1, a matriz com os genes e as pontuacoes é gerada somente após passado um determinado tempo de simulação, já que todos os carros sempre estão na pista.
+
+Na fase de reprodução, são selecionados os x primeiros indivíduos para serem reproduzidos. Então, é gerado pares de reprodução, de forma que o primeiro tenha prioridade na reprodução, o segundo após ele, etc. Por exemplo, se fossem 4 indivíduos para a reprodução, os pares formados seriam (1,2) (1,3) (1,4) (2,3) (2,4) (3,4), sendo que a lista de pares é percorrida da esquerda para direita.Os dois primeiros colocados são passados para a próxima geração sem alterações. Após gerados os pares, é realizado a reprodução para cada par, gerando 2 filhos, até atingir o tamanho fixo da população. A parte de reprodução é feita da seguinte maneira, é escolhido um índice aleatório no vetor de genes, e assim divide-se vetor do código genético em dois. Um dos filhos recebe a primeira parte de um dos pais e a segunda parte do outro pai, e vice-versa.
+
+Após a reprodução, os filhos passam uma etapa de mutação, que pode alterar um ou mais elementos do seu código genético de acordo com uma dada probabilidade. A alteração é feita adicionando um número aleatório em um dado intervalo. 
+
+No final, é gerada uma nova população, que então é transmitida suas características para os carros e então é gerada a nova geração.
+
+
 ## Requisitos
 
 * Blender versão 2.79 (A partir da versão 2.8, foi descontinuado o Blender Game Engine e portanto, não irá funcionar)
