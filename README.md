@@ -10,14 +10,18 @@ Esse é um projeto desenvolvido para a disciplina PSI 3572- Computação Visual,
 
 Aplicacoes semelhantes podem ser encontradas na Internet, como nesse [link](https://ashwinvaidya.com/blog/self-driving-car-using-genetic-algorithm-in-unity/) ou [aqui](https://www.youtube.com/watch?v=8V2sX9BhAW8&feature=emb_title). Porem, nao conseguimos achar nenhum programa desse tipo que rode utilizando a Blender Game Engine. Logo, resolvemos fazer um. Outro motivo para utilizarmos o Blender, é por ser mais leve para rodar do que o Unity e também por ser um programa Open Source.
 
-## Como funciona
+Os resultados podem ser vistos no [video](https://youtu.be/K3c_hVrH8Zo)
+
+## Como funciona 
 Para aplicarmos um algoritmo genético, pensamos em utilizar um controlador genérico no carro e então o algoritmo genético altera os parâmetros desse controlador, dando assim características diferentes aos carros para serem selecionados. O controlador do algoritmo genético pode ser encontrados nos scripts "gerador_logic.py".
 
 Como controlador, resolvemos utilizar uma rede neural, e assim, os parâmetros que constituem o código genético dos carros são os pesos e vieses da rede. A estrutura interna da rede é diferente no gerador 1 e no gerador 2, mais detalhes podem ser encontrados dentro dos readme dessas pastas. Apesar disso, as entradas e saídas da rede são iguais para ambos. As entradas são o módulo da velocidade linear do carro e o valor de 3 sensores do tipo Ray(Exemplificados por "lasers" na visualização). A saída é o equivalente as teclas WASD do teclado, para controlar o carrinho. O código relacionado ao controlador do carrinho pode ser encontrado nos scripts "network_logic.py".
 
-Para animar o carrinho, primeiramente fizemos um script "car_logic.py", que permitia ao usuario controlar o carrinho de forma mais natural utilizando as teclas WASD do teclado. Após isso, bastou trocar essa entrada do teclado pela saída da rede neural.
+O modelo fisico do carrinho foi adaptado desse [modelo](https://free3d.com/3d-model/low-poly-car-40967.html) encontrado na internet. Para animar o carrinho, primeiramente fizemos um script "car_logic.py", que permitia ao usuario controlar o carrinho de forma mais natural utilizando as teclas WASD do teclado. Após isso, bastou trocar essa entrada do teclado pela saída da rede neural.
 
 Há ainda mais um arquivo não explicado, o 'cube_logic.py'. Esse arquivo apenas move um cubo responsável pelo posicionamento correto dos sensores tipo Ray.
+
+Os carros de cada geração correm todos ao mesmo tempo, porém são essencialmente invisíveis uns aos outros, já que não colidem uns com os outros e os sensores detectam apenas a distância da pista.
 
 ## Pistas
 Para treinarmos o carrinho, precisávamos de uma pista de teste, para isso, utilizamos como inspiração autódromos de Fórmula 1. Primeiramente criamos uma seção lateral da pista com muros dos lados, como no arquivo "pista_pedaco.blend". Depois, é possível fazer a pista seguir uma curva determinada como nesse [video](https://www.youtube.com/watch?v=SDLLbKvEeBY). Para criar a curva utilizamos a biblioteca Shapely do python, que permite criar uma curva a partir de uma série de pontos. Essa biblioteca também foi útil para calcularmos a distância percorrida sobre essa curva. Como no vídeo, projetamos um desenho esquemático da pista de Interlagos, que serviu como treinamento, e fomos manualmente achando as coordenadas corretas para aproximar essa pista. Esse processo está no arquivo "pistaInterlagos.blend".
@@ -90,4 +94,19 @@ Para lançar a simulação, basta abrir uma janela do 3dView, colocar o mouse so
 
 Para utilizar a camera do jogo no 3dView, pode-se utilzar a hotkey Numpad 0
 
+## Trabalhos Futuros
+
+Provavelmente não iremos trabalhar intensamente nesse projeto no futuro. Entretanto, está aberto o projeto para quem quiser continuar.Se você tem interesse em continuar e quiser ser adicionado como colaborador, só entrar em contato. Abaixo tem uma lista de tarefas que achamos que seriam interessantes fazer, sem ordem específica:
+
+* Faz versão do Readme em inglês.
+* Também traduzir as variáveis para inglês, e colocar nomes mais adequados nelas de acordo com alguma convenção para facilitar a leitura do código
+* Fazer utilizando apenas numpy as funções da biblioteca Shapely, para que o usuário não precise instalá-la, visto que no Windows esse foi um dos problemas que encontramos.
+* Utilizar mais de um núcleo de CPU para executar a simulação
+* Pensar em maneiras de otimizar o tamanho da população, ao invés de manter um tamanho fixo
+* Criar novas pistas
+* Criar pistas com variação no eixo z, ou seja, com mais ladeiras
+* Melhorar algoritmo de pontuação, para detectar o carro na direção errada, e para suportar o carro fazer mais de uma volta
+* Remover restrições de velocidade no carrinho, e tentar utilizar o algoritmo genético para fazer o carrinho tentar fazer a volta mais rápida.
+* Colocar carrro que possam bater no adversario, em um grid de largada como em uma corrida real.
+* Algoritmo genético: Modificar Reprodução, adicionar invasão de novos indivíduos, etc.
 
