@@ -3,6 +3,8 @@
 ## table of contents
 
 Adiconar depois utilizando o [site](https://ecotrust-canada.github.io/markdown-toc/)
+- [Pistas](#pistas)
+- [Uso](#uso)
 
 ## Introdução
 
@@ -16,6 +18,8 @@ Os resultados podem ser vistos no [video](https://youtu.be/K3c_hVrH8Zo)
 Para aplicarmos um algoritmo genético, pensamos em utilizar um controlador genérico no carro e então o algoritmo genético altera os parâmetros desse controlador, dando assim características diferentes aos carros para serem selecionados. O controlador do algoritmo genético pode ser encontrados nos scripts "gerador_logic.py".
 
 Como controlador, resolvemos utilizar uma rede neural, e assim, os parâmetros que constituem o código genético dos carros são os pesos e vieses da rede. A estrutura interna da rede é diferente no gerador 1 e no gerador 2, mais detalhes podem ser encontrados dentro dos readme dessas pastas. Apesar disso, as entradas e saídas da rede são iguais para ambos. As entradas são o módulo da velocidade linear do carro e o valor de 3 sensores do tipo Ray(Exemplificados por "lasers" na visualização). A saída é o equivalente as teclas WASD do teclado, para controlar o carrinho. O código relacionado ao controlador do carrinho pode ser encontrado nos scripts "network_logic.py".
+
+![Carros andando em Interlagos](carros_in_interlagos.png)
 
 O modelo fisico do carrinho foi adaptado desse [modelo](https://free3d.com/3d-model/low-poly-car-40967.html) encontrado na internet. Para animar o carrinho, primeiramente fizemos um script "car_logic.py", que permitia ao usuario controlar o carrinho de forma mais natural utilizando as teclas WASD do teclado. Após isso, bastou trocar essa entrada do teclado pela saída da rede neural.
 
@@ -31,7 +35,7 @@ Após treinado o carrinho , fizemos uma pista com o desenho da pista de mônaco 
 Importante notar, que devido a forma que construímos a pista, desconsideramos as diferenças de altitude entre os setores da pista. Logo uma pista com ladeiras passa a ser uma pista plana.
 
 
-## Algotitmo genetico
+## Algoritmo genetico
 O Algoritmo genetico, que está descrito em "gerador_logic.py" funciona da seguinte maneira. O código genético é um array que possui os pesos e vieses da rede neural que constitue o carro. Na primeira geração, são criados carros com os genes iniciados aleatoriamente. 
 
 No gerador 2, durante o teste de uma geração, conforme os carros vão falhando, seus códigos genéticos são incluídos em uma lista, assim como as suas pontuações são incluídas em outra lista. Após todos os carros falharem, ou conseguirem chegar ao final da pista(e consequentemente falhar, pois irão ficar parados por muito tempo), são unidos a lista de genes e a lista de pontuações de forma a criar uma tabela(ou matriz) que contém em cada linha o código genético do carro e a sua pontuação. Essa matriz é então ordenada de acordo com a pontuação de forma que a pontuação mais alta fique no topo da matriz. Assim, passa-se essa matriz para uma função de reprodução
