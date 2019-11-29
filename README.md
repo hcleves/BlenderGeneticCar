@@ -1,12 +1,18 @@
-# BlenderGeneticCar
+# Carros com algoritmo genético em Blender
 
 ## table of contents
 
-Adiconar depois utilizando o [site](https://ecotrust-canada.github.io/markdown-toc/)
+<!--Adiconar depois utilizando o [site](https://ecotrust-canada.github.io/markdown-toc/)-->
+- [Introdução](#introducao)
+- [Como funciona](#como-funciona)
 - [Pistas](#pistas)
+- [Algoritmo genetico](#algoritmo-genetico)
+- [Pontuação](#pontuacao)
+- [Requisitos](#requisitos)
 - [Uso](#uso)
+- [Trabalhos Futuros](#trabalhos-futuros)
 
-## Introdução
+## Introducao
 
 Esse é um projeto desenvolvido para a disciplina PSI 3572- Computação Visual, dada pela Escola Politécnica da USP no segundo semestre de 2019. O projeto consiste em desenvolver uma aplicação que utilize computação. Nós escolhemos utilizar um algoritmo genético para ensinar um carro virtual a dirigir.
 
@@ -49,7 +55,7 @@ Após a reprodução, os filhos passam uma etapa de mutação, que pode alterar 
 No final, é gerada uma nova população, que então é transmitida suas características para os carros e então é gerada a nova geração.
 
 
-## Pontuação
+## Pontuacao
 
 Para conseguirmos utilizar o algoritmo genético, é necessário definir como será calculada a pontuação do carro. Utilizamos como base da pontuação a distância percorrida na curva que representa a pista. Essa distância é calculada achando o ponto da curva mais próximo ao carro e percorrendo a curva até esse ponto. O cálculo é realizado na função line.project(point) da biblioteca Shapely. Existem casos em que o carro é desclassificado, em caso de desclassificação, sua pontuação é congelada no momento que ocorreu a desclassificação. Os critérios para desclassificação são os seguintes:
 
