@@ -1,6 +1,6 @@
 # Carros com algoritmo genético em Blender
 
-## table of contents
+## Indice
 
 <!--Adiconar depois utilizando o [site](https://ecotrust-canada.github.io/markdown-toc/)-->
 - [Introdução](#introducao)
