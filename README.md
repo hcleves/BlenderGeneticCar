@@ -41,6 +41,17 @@ Após a reprodução, os filhos passam uma etapa de mutação, que pode alterar 
 No final, é gerada uma nova população, que então é transmitida suas características para os carros e então é gerada a nova geração.
 
 
+## Pontuação
+
+Para conseguirmos utilizar o algoritmo genético, é necessário definir como será calculada a pontuação do carro. Utilizamos como base da pontuação a distância percorrida na curva que representa a pista. Essa distância é calculada achando o ponto da curva mais próximo ao carro e percorrendo a curva até esse ponto. O cálculo é realizado na função line.project(point) da biblioteca Shapely. Existem casos em que o carro é desclassificado, em caso de desclassificação, sua pontuação é congelada no momento que ocorreu a desclassificação. Os critérios para desclassificação são os seguintes:
+
+* O carro caiu da pista, neste caso especificamente atribui-se a pontuação à 0.
+* O carro bateu na pista, ou seja, um dos sensores detectou a distância muito pequena.
+* O carro está com velocidade instantânea muito baixa
+* O carro está com velocidade média baixa.
+
+Um critério que seria interessante para prevenir seria o do carro estar andando no sentido contrário da pista. Porém não conseguimos implementar esse critério no programa. Para prevenir que um carro desse ré e enganasse o sistema de pontuação achando que ele estaria no final da volta, colocamos blocos que impedem o carro fisicamente de passar. 
+
 ## Requisitos
 
 * Blender versão 2.79 (A partir da versão 2.8, foi descontinuado o Blender Game Engine e portanto, não irá funcionar)
