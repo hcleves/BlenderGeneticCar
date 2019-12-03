@@ -14,9 +14,9 @@
 
 ## Introducao
 
-Esse é um projeto desenvolvido para a disciplina PSI 3572- Computação Visual, dada pela Escola Politécnica da USP no segundo semestre de 2019. O projeto consiste em desenvolver uma aplicação que utilize computação. Nós escolhemos utilizar um algoritmo genético para ensinar um carro virtual a dirigir.
+Esse é um projeto desenvolvido para a disciplina PSI 3572- Computação Visual, dada pela Escola Politécnica da USP no segundo semestre de 2019. O projeto consiste em desenvolver uma aplicação que utilize computação visual. Nós escolhemos utilizar um algoritmo genético para ensinar um carro virtual a dirigir.
 
-Aplicacoes semelhantes podem ser encontradas na Internet, como nesse [link](https://ashwinvaidya.com/blog/self-driving-car-using-genetic-algorithm-in-unity/) ou [aqui](https://www.youtube.com/watch?v=8V2sX9BhAW8&feature=emb_title). Porem, nao conseguimos achar nenhum programa desse tipo que rode utilizando a Blender Game Engine. Logo, resolvemos fazer um. Outro motivo para utilizarmos o Blender, é por ser mais leve para rodar do que o Unity e também por ser um programa Open Source.
+Aplicacões semelhantes podem ser encontradas na Internet, como nesse [link](https://ashwinvaidya.com/blog/self-driving-car-using-genetic-algorithm-in-unity/) ou [aqui](https://www.youtube.com/watch?v=8V2sX9BhAW8&feature=emb_title). Porém, nao conseguimos achar nenhum programa desse tipo que rode utilizando a Blender Game Engine. Logo, resolvemos fazer um. Outro motivo para utilizarmos o Blender é por ser mais leve para rodar do que o Unity, além de ser um programa Open Source.
 
 Os resultados podem ser vistos no [video](https://youtu.be/K3c_hVrH8Zo)
 
@@ -48,7 +48,7 @@ No gerador 2, durante o teste de uma geração, conforme os carros vão falhando
 
 No gerador 1, a matriz com os genes e as pontuacoes é gerada somente após passado um determinado tempo de simulação, já que todos os carros sempre estão na pista.
 
-Na fase de reprodução, são selecionados os x primeiros indivíduos para serem reproduzidos. Então, é gerado pares de reprodução, de forma que o primeiro tenha prioridade na reprodução, o segundo após ele, etc. Por exemplo, se fossem 4 indivíduos para a reprodução, os pares formados seriam (1,2) (1,3) (1,4) (2,3) (2,4) (3,4), sendo que a lista de pares é percorrida da esquerda para direita.Os dois primeiros colocados são passados para a próxima geração sem alterações. Após gerados os pares, é realizado a reprodução para cada par, gerando 2 filhos, até atingir o tamanho fixo da população. A parte de reprodução é feita da seguinte maneira, é escolhido um índice aleatório no vetor de genes, e assim divide-se vetor do código genético em dois. Um dos filhos recebe a primeira parte de um dos pais e a segunda parte do outro pai, e vice-versa.
+Na fase de reprodução, são selecionados os x primeiros indivíduos para serem reproduzidos. Então, é gerado pares de reprodução, de forma que o primeiro tenha prioridade na reprodução, o segundo após ele, etc. Por exemplo, se fossem 4 indivíduos para a reprodução, os pares formados seriam (1,2) (1,3) (1,4) (2,3) (2,4) (3,4), sendo que a lista de pares é percorrida da esquerda para direita.Os dois primeiros colocados são passados para a próxima geração sem alterações. Após gerados os pares, é realizado a reprodução para cada par, gerando 2 filhos, até atingir o tamanho fixo da população. A parte de reprodução é feita da seguinte maneira: é escolhido um índice aleatório no vetor de genes, e assim divide-se vetor do código genético em dois. Um dos filhos recebe a primeira parte de um dos pais e a segunda parte do outro pai, e vice-versa.
 
 Após a reprodução, os filhos passam uma etapa de mutação, que pode alterar um ou mais elementos do seu código genético de acordo com uma dada probabilidade. A alteração é feita adicionando um número aleatório em um dado intervalo. 
 
@@ -57,10 +57,10 @@ No final, é gerada uma nova população, que então é transmitida suas caracte
 
 ## Pontuacao
 
-Para conseguirmos utilizar o algoritmo genético, é necessário definir como será calculada a pontuação do carro. Utilizamos como base da pontuação a distância percorrida na curva que representa a pista. Essa distância é calculada achando o ponto da curva mais próximo ao carro e percorrendo a curva até esse ponto. O cálculo é realizado na função line.project(point) da biblioteca Shapely. Existem casos em que o carro é desclassificado, em caso de desclassificação, sua pontuação é congelada no momento que ocorreu a desclassificação. Os critérios para desclassificação são os seguintes:
+Para conseguirmos utilizar o algoritmo genético, é necessário definir como será calculada a pontuação do carro. Utilizamos como base da pontuação a distância percorrida na curva que representa a pista. Essa distância é calculada achando o ponto da curva mais próximo ao carro e percorrendo a curva até esse ponto. O cálculo é realizado na função line.project(point) da biblioteca Shapely. Existem casos em que o carro é desclassificado: nestes, sua pontuação é congelada no momento que ocorreu a desclassificação. Os critérios para desclassificação são os seguintes:
 
-* O carro caiu da pista, neste caso especificamente atribui-se a pontuação à 0.
-* O carro bateu na pista, ou seja, um dos sensores detectou a distância muito pequena.
+* O carro caiu da pista: neste caso especificamente atribui-se a pontuação à 0.
+* O carro bateu na pista: ou seja, um dos sensores detectou a distância muito pequena.
 * O carro está com velocidade instantânea muito baixa
 * O carro está com velocidade média baixa.
 
@@ -85,7 +85,7 @@ Para utilizar o programa, basta acessar o arquivo .blend dentro da pasta Blender
 
 ##### Importante: Para lançar o arquivo .blend utilize a linha de comando "blender <nome_do_arquivo>". Tentar abrir o arquivo com dois cliques ou outra maneira, irá resultar em uma simulação com defeitos, por motivos que não compreendo.
 
-Nota-se que também é fácil criar um arquivo novo, basta colocá-lo dentro da pasta Blenders e copiar e colar o arquivo main.py na pasta scripts para o editor de texto do blender e executar o script. Caso seja um novo arquivo, é recomendado fazer os seguintes passos para melhorar a performance:
+Nota-se que também é fácil criar um arquivo novo, bastando colocá-lo dentro da pasta Blenders e copiar e colar o arquivo main.py na pasta scripts para o editor de texto do blender e executar o script. Caso seja um novo arquivo, é recomendado fazer os seguintes passos para melhorar a performance:
 
 1. Vá na view de Properties, na Aba Render, procure por System
 2. Nesse local desabilite "Use Frame Rate" e mude o Vsync para Off
@@ -108,7 +108,7 @@ Para utilizar a camera do jogo no 3dView, pode-se utilzar a hotkey Numpad 0
 
 Provavelmente não iremos trabalhar intensamente nesse projeto no futuro. Entretanto, está aberto o projeto para quem quiser continuar.Se você tem interesse em continuar e quiser ser adicionado como colaborador, só entrar em contato. Abaixo tem uma lista de tarefas que achamos que seriam interessantes fazer, sem ordem específica:
 
-* Faz versão do Readme em inglês.
+* Fazer versão do Readme em inglês.
 * Também traduzir as variáveis para inglês, e colocar nomes mais adequados nelas de acordo com alguma convenção para facilitar a leitura do código
 * Fazer utilizando apenas numpy as funções da biblioteca Shapely, para que o usuário não precise instalá-la, visto que no Windows esse foi um dos problemas que encontramos.
 * Utilizar mais de um núcleo de CPU para executar a simulação
@@ -117,6 +117,6 @@ Provavelmente não iremos trabalhar intensamente nesse projeto no futuro. Entret
 * Criar pistas com variação no eixo z, ou seja, com mais ladeiras
 * Melhorar algoritmo de pontuação, para detectar o carro na direção errada, e para suportar o carro fazer mais de uma volta
 * Remover restrições de velocidade no carrinho, e tentar utilizar o algoritmo genético para fazer o carrinho tentar fazer a volta mais rápida.
-* Colocar carrro que possam bater no adversario, em um grid de largada como em uma corrida real.
+* Colocar carro que possam bater no adversario, em um grid de largada como em uma corrida real.
 * Algoritmo genético: Modificar Reprodução, adicionar invasão de novos indivíduos, etc.
 
