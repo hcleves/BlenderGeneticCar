@@ -121,6 +121,8 @@ To run the simulation the second time or the nth time, is recommended to run the
 importlib.reload (numpy)
 ```
 
+It's important to notice that the program will dump the results of each generation to a csv file, in order to save the progress. So, it will generate a bunch of csv files when it runs. These files can be deleted with no further consequences than the loss of data from the former training session.
+
 ## Future works
 
 We probably won't be working hard on this project in the future. However, the project is open to anyone who wants to continue. If you are interested in continuing and want to be added as a collaborator, just get in touch. Below is a list of tasks that we think would be interesting to do, in no specific order:
