@@ -5,7 +5,7 @@
 
 ## Index
 
-<! - Add later using the [site] (https://ecotrust-canada.github.io/markdown-toc/) ->
+<!--Adiconar depois utilizando o [site](https://ecotrust-canada.github.io/markdown-toc/)-->
 - [Introduction](#introduction)
 - [How it works](#how-it-works)
 - [Tracks](#tracks)
@@ -94,7 +94,7 @@ A criterion that would be interesting to prevent would be that the car is moving
 
 To use the program, simply access the .blend file inside the Blenders folder.
 
-##### Important: To launch the .blend file, use the command line "blender <filename>". Trying to open the file with two clicks or otherwise, will result in a defective simulation, for reasons I don't understand.
+##### Important: To launch the .blend file, use the command line "blender < filename >". Trying to open the file with two clicks or otherwise, will result in a defective simulation, for reasons I don't understand.
 
 Note that it is also easy to create a new file, just place it inside the Blenders folder and copy and paste the main.py file into the scripts folder for the blender text editor and run the script. If it is a new file, it is recommended to do the following steps to improve performance:
 
@@ -105,11 +105,11 @@ Note that it is also easy to create a new file, just place it inside the Blender
 
 In both cases, whether it is a new file or an old file, it is essential to execute the following commands in the interactive python console as soon as you open the file. Otherwise, python will issue a docstring error the second time the simulation is performed.
 
-`` python
+``` python
 import numpy
 import importlib
 importlib.reload (numpy)
-``
+```
 
 To launch the simulation, just open a 3dView window, place the mouse over it and hit "p". Make sure that Blender is in Blender Game mode. To exit the simulation, just place the mouse over it again and press ESC.
 
@@ -117,9 +117,9 @@ To use the game camera in 3dView, you can use the hotkey Numpad 0
 
 To run the simulation the second time or the nth time, is recommended to run the following command on the interactive python console
 
-`` python
+``` python
 importlib.reload (numpy)
-``
+```
 
 ## Future works
 
